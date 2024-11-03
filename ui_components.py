@@ -43,6 +43,9 @@ def build_ui():
     st.sidebar.header("Model Selection")
     model_choice = st.sidebar.selectbox("Select Epidemic Model", list(model_params.keys()))
 
+    #set title
+    st.title(f"{model_choice} MODEL")
+    
     # Set default parameters based on selected model
     params = model_params[model_choice]
 
