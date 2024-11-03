@@ -5,7 +5,7 @@ from ui_components import build_ui
 st.set_page_config(page_title="Epidemielody models", layout="wide")
 
 def main():
-    st.title("SIR Model")
+    
     build_ui()
 
 if __name__ == "__main__":
