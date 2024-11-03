@@ -1,38 +1,35 @@
-import plotly.graph_objects as go
+# plotting.py
+from seir_model import seir_model  # Import SEIR model function
 from sir_model import sir_model
+import plotly.graph_objects as go
 import streamlit as st
 
-def update_plot(population, initial_infected, beta, gamma, natural_death, disease_death, graph_type):
-    # Generate SIR model data
-    S, I, R = sir_model(population, initial_infected, beta, gamma, natural_death, disease_death)
-    days = list(range(len(S)))
+def update_plot(model_choice, params):
+    # Choose the model function
+    if model_choice == "SIR":
+        S, I, R = sir_model(params["Population"], params["Initial Infected"], params["Infection Rate (beta)"],
+                            params["Recovery Rate (gamma)"], params["Natural Death Rate"], params["Disease Death Rate"])
+        compartments = {"Susceptible": S, "Infected": I, "Recovered": R}
+    
+    elif model_choice == "SEIR":
+        S, E, I, R = seir_model(params["Population"], params["Initial Infected"], params["Infection Rate (beta)"],
+                                params["Recovery Rate (gamma)"], params["Incubation Rate (alpha)"],
+                                params["Natural Death Rate"], params["Disease Death Rate"])
+        compartments = {"Susceptible": S, "Exposed": E, "Infected": I, "Recovered": R}
 
-    # Create an interactive plot with Plotly
+    # Plot with a default line chart
     fig = go.Figure()
+    days = list(range(len(next(iter(compartments.values())))))  # Get the length of days
 
-    # Add traces based on selected graph type
-    if graph_type == "Line Chart":
-        # Lines only, with markers shown only on hover
-        fig.add_trace(go.Scatter(x=days, y=S, mode='lines', name='Susceptible', hoverinfo="x+y", line=dict(color='blue')))
-        fig.add_trace(go.Scatter(x=days, y=I, mode='lines', name='Infected', hoverinfo="x+y", line=dict(color='red')))
-        fig.add_trace(go.Scatter(x=days, y=R, mode='lines', name='Recovered', hoverinfo="x+y", line=dict(color='green')))
-    elif graph_type == "Bar Chart":
-        fig.add_trace(go.Bar(x=days, y=S, name='Susceptible', hoverinfo="x+y"))
-        fig.add_trace(go.Bar(x=days, y=I, name='Infected', hoverinfo="x+y"))
-        fig.add_trace(go.Bar(x=days, y=R, name='Recovered', hoverinfo="x+y"))
-    elif graph_type == "Scatter Plot":
-        fig.add_trace(go.Scatter(x=days, y=S, mode='markers', name='Susceptible', hoverinfo="x+y", marker=dict(color='blue')))
-        fig.add_trace(go.Scatter(x=days, y=I, mode='markers', name='Infected', hoverinfo="x+y", marker=dict(color='red')))
-        fig.add_trace(go.Scatter(x=days, y=R, mode='markers', name='Recovered', hoverinfo="x+y", marker=dict(color='green')))
+    for name, data in compartments.items():
+        fig.add_trace(go.Scatter(x=days, y=data, mode='lines', name=name))
 
-    # Customize layout to make it responsive
     fig.update_layout(
-        title="SIR Model with Death Rates",
+        title=f"{model_choice} Model Simulation",
         xaxis_title="Days",
         yaxis_title="Population",
-        hovermode="x",  # Ensure hover shows values for all series at the same x value
-        legend_title="Categories",
+        hovermode="x",
+        legend_title="Compartments",
     )
 
-    # Display the Plotly chart in Streamlit
     st.plotly_chart(fig, use_container_width=True)
