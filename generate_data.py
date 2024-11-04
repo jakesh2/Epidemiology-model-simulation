@@ -1,12 +1,13 @@
 # generate_data.py
 import pandas as pd
-import numpy as np
-from scipy.optimize import curve_fit
+#import numpy as np
+import random
+'''from scipy.optimize import curve_fit
 from sklearn.metrics import mean_squared_error
 import random
 from sir_model import sir_model
 from seir_model import seir_model
-from sis_model import sis_model
+from sis_model import sis_model'''
 
 def generate_synthetic_data():
     """
@@ -92,7 +93,7 @@ def generate_synthetic_data():
     print(data)
     return data, selected_model, true_params
 
-def recommend_model(data):
+'''def recommend_model(data):
     """
     Fits SIR, SEIR, and SIS models to the given data, calculates the mean squared error for each,
     and recommends the best-fitting model based on the lowest error.
@@ -139,5 +140,5 @@ def recommend_model(data):
 
     # Recommend the model with the lowest mean squared error
     recommended_model = min(errors, key=errors.get)
-    return recommended_model, errors, fitted_params
+    return recommended_model, errors, fitted_params'''
 #generate_synthetic_data()
