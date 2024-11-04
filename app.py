@@ -1,7 +1,7 @@
 # app.py
 import streamlit as st
-from ui_components.simulation_ui import build_simulation_ui
-from ui_components.data_fitting_ui import build_data_fitting_ui
+from simulation_ui import build_simulation_ui
+from data_fitting_ui import build_data_fitting_ui
 
 # Mode selection toggle
 def main():
