@@ -141,4 +141,7 @@ def generate_synthetic_data():
     # Recommend the model with the lowest mean squared error
     recommended_model = min(errors, key=errors.get)
     return recommended_model, errors, fitted_params'''
+
+def recommend_model(data):
+    pass
 #generate_synthetic_data()
