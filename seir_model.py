@@ -1,7 +1,7 @@
-# seir_model.py
+# models/seir_model.py
 import numpy as np
 
-def seir_model(population, initial_infected, beta, gamma, alpha, natural_death, disease_death, days=160):
+def seir_model(population, initial_infected, beta, gamma, alpha, natural_death=0, disease_death=0, days=160):
     susceptible = population - initial_infected
     exposed = 0
     infected = initial_infected

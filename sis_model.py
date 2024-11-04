@@ -1,7 +1,7 @@
-# sis_model.py
+# models/sis_model.py
 import numpy as np
 
-def sis_model(population, initial_infected, beta, gamma, natural_death, days=160):
+def sis_model(population, initial_infected, beta, gamma, natural_death=0, days=160):
     susceptible = population - initial_infected
     infected = initial_infected
 
@@ -12,8 +12,8 @@ def sis_model(population, initial_infected, beta, gamma, natural_death, days=160
         new_recovered = gamma * infected
         natural_deaths = natural_death * susceptible
 
-        susceptible = susceptible - new_infected + new_recovered - natural_deaths
-        infected = infected + new_infected - new_recovered
+        susceptible += new_recovered - new_infected - natural_deaths
+        infected += new_infected - new_recovered
 
         S.append(susceptible)
         I.append(infected)
