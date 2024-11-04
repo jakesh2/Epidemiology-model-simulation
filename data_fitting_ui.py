@@ -1,6 +1,6 @@
 # ui_components/data_fitting_ui.py
 import streamlit as st
-from  matplotlib.pyplot import plot as plt
+#from  matplotlib.pyplot import plot as plt
 import pandas as pd
 import plotly.graph_objects as go
 from sir_model import sir_model
