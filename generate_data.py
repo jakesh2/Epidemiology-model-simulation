@@ -4,9 +4,9 @@ import numpy as np
 from scipy.optimize import curve_fit
 from sklearn.metrics import mean_squared_error
 import random
-from models.sir_model import sir_model
-from models.seir_model import seir_model
-from models.sis_model import sis_model
+from sir_model import sir_model
+from seir_model import seir_model
+from sis_model import sis_model
 
 def generate_synthetic_data():
     """
