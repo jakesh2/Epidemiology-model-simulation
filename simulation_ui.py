@@ -66,8 +66,7 @@ def build_simulation_ui():
         params["Natural Death Rate"] = st.sidebar.slider("Natural Death Rate", 0.0, 0.1, params["Natural Death Rate"])
     if "Disease Death Rate" in params:
         params["Disease Death Rate"] = st.sidebar.slider("Disease Death Rate", 0.0, 0.1, params["Disease Death Rate"])
-
-    # Display the graph
+    # Dsplay the graph
     st.subheader("Graph")
     update_plot(model_choice, params)
 
