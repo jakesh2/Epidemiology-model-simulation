@@ -2,7 +2,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 from models.sir_model import sir_model
-from models.seir_model import seir_model
+from models.seir_model import solve_model as seir_model
 from models.sis_model import sis_model
 
 def update_plot(model_choice, params):
@@ -24,19 +24,25 @@ def update_plot(model_choice, params):
             beta=params["Infection Rate (beta)"],
             gamma=params["Recovery Rate (gamma)"],
             natural_death=params.get("Natural Death Rate", 0),
-            disease_death=params.get("Disease Death Rate", 0)
+            disease_death=params.get("Disease Death Rate", 0),
+            days=params["Time in Days"]
         )
         compartments = {"Susceptible": S, "Infected": I, "Recovered": R}
     
     elif model_choice == "SEIR":
+        print(params)
         S, E, I, R = seir_model(
-            population=params["Population"],
-            initial_infected=initial_infected,
+            S=params["Susceptible"],
+            E=params["Exposed"],
+            I=params["Infected"],
+            R = params["Recovered"],
             beta=params["Infection Rate (beta)"],
             gamma=params["Recovery Rate (gamma)"],
             alpha=params["Incubation Rate (alpha)"],
-            natural_death=params.get("Natural Death Rate", 0),
-            disease_death=params.get("Disease Death Rate", 0)
+            natural_death_rate=params.get("Natural Death Rate", 0),
+            disease_death_rate=params.get("Disease Death Rate", 0),
+            birth_rate=params["Recruitment Rate(Birth_rate)"],
+            days=params["Time in Days"]
         )
         compartments = {"Susceptible": S, "Exposed": E, "Infected": I, "Recovered": R}
     
