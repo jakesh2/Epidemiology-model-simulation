@@ -21,7 +21,7 @@ def sis_model_description():
     parameters = """
     ### Parameters:
     - $N$: Total population
-    - $\beta$: Transmission rate
+    - $\\beta$: Transmission rate
     - $\gamma$: Recovery rate
     - $\mu$: Natural death rate
     - $\delta$: Disease-induced death rate

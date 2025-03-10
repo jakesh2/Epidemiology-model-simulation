@@ -16,7 +16,7 @@ def seir_model_description():
     """
     equations = r"""
     \begin{align*}
-    \frac{dS}{dt} &= \lambda \times N - \beta \frac{S I}{N} - \mu S - v S \\
+    \frac{dS}{dt} &= \lambda N - \beta \frac{S I}{N} - \mu S - v S \\
     \frac{dE}{dt} &= \beta \frac{S I}{N} - (\alpha + \mu) E \\
     \frac{dI}{dt} &= \alpha E - (\gamma + \tau + \mu + \delta) I \\
     \frac{dR}{dt} &= (\gamma + \tau) I - \mu R + v S
@@ -25,17 +25,24 @@ def seir_model_description():
     parameters = """
     ### Parameters:
     - $N$: Total population
-    - $\beta$: Transmission rate
-    - $\alpha$: Incubation rate
+    - $\\beta$: Transmission rate
+    - $\\alpha$: Incubation rate
     - $\gamma$: Recovery rate
     - $\mu$: Natural death rate
     - $\delta$: Disease-induced death rate
     - $v$: Vaccination rate
-    - $\tau$: Treatment rate
+    - $\\tau$: Treatment rate
     """
+    assumptions = """
+    ### Assumptions:
+    - The population is closed (no migration).
+    - The disease confers lifelong immunity upon recovery.
+    - The incubation period is finite (exposed individuals eventually become infectious).
+    
+    ### Differential Equations:"""
     reproduction_numbers = """
     ### Reproduction Numbers:
     - **$R_0$**: Basic reproduction number, representing the average number of secondary infections produced by a single infected individual in a fully susceptible population.
     - **$R_{\text{eff}}$**: Effective reproduction number, representing the average number of secondary infections produced by a single infected individual in a population that is not fully susceptible.
     """
-    return description, equations, parameters, reproduction_numbers
+    return description, equations, parameters,assumptions, reproduction_numbers
