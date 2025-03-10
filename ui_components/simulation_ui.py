@@ -21,7 +21,7 @@ def build_simulation_ui():
             "Recovery Rate (gamma)": 0.00001,
             "Natural Death Rate": 0.00001,
             "Disease Death Rate": 0.00005,
-            "Vaccination Rate (v)": 0.0,
+            "Vaccination Rate (v)": 0.00000,
             "Treatment Rate (tau)": 0.0,
             "Time in Days": 200
         },

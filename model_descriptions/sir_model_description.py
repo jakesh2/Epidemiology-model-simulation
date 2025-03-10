@@ -33,6 +33,6 @@ def sir_model_description():
     reproduction_numbers = """
     ### Reproduction Numbers:
     - **$R_0$**: Basic reproduction number, representing the average number of secondary infections produced by a single infected individual in a fully susceptible population.
-    - **$R_{\text{eff}}$**: Effective reproduction number, representing the average number of secondary infections produced by a single infected individual in a population that is not fully susceptible.
+    - **$R_{\\text{eff}}$**: Effective reproduction number, representing the average number of secondary infections produced by a single infected individual in a population that is not fully susceptible.
     """
     return description, equations, parameters, reproduction_numbers
