@@ -76,16 +76,18 @@ def build_simulation_ui():
 
         elif model_choice == "SIR":
             # Import and display the SIR model description
-            description, equations, parameters, reproduction_numbers = sir_model_description()
+            description, equations, parameters, reproduction_numbers,assumptions = sir_model_description()
             st.markdown(description)
+            st.markdown(assumptions)
             st.latex(equations)  # Render the aligned equations
             st.markdown(parameters)
             st.markdown(reproduction_numbers)
 
         elif model_choice == "SIS":
             # Import and display the SIS model description
-            description, equations, parameters, reproduction_numbers = sis_model_description()
+            description, equations, parameters, reproduction_numbers,assumptions = sis_model_description()
             st.markdown(description)
+            st.markdown(assumptions)
             st.latex(equations)  # Render the aligned equations
             st.markdown(parameters)
             st.markdown(reproduction_numbers)

@@ -11,8 +11,17 @@ def sir_model_description():
     - **Infected (I)**: Individuals currently infected and capable of spreading the disease.
     - **Recovered (R)**: Individuals who have recovered and gained lifelong immunity.
 
-    ### Differential Equations:
     """
+    assumptions = r"""
+    ### Assumptions:
+    - The population is closed (no migration).
+    - The disease confers lifelong immunity upon recovery.
+    - The population is well-mixed (no spatial structure).
+    - The transmission rate ($\beta$), recovery rate ($\gamma$), and death rates ($\mu$, $\delta$) are constant over time.
+    - Vaccination ($v$) and treatment ($\tau$) are applied uniformly across the population.
+    
+    
+    ### Differential Equations:"""
     equations = r"""
     \begin{align*}
     \frac{dS}{dt} &= \lambda N - \beta \frac{S I}{N} - \mu S - v S \\
@@ -35,4 +44,4 @@ def sir_model_description():
     - **$R_0$**: Basic reproduction number, representing the average number of secondary infections produced by a single infected individual in a fully susceptible population.
     - **$R_{\\text{eff}}$**: Effective reproduction number, representing the average number of secondary infections produced by a single infected individual in a population that is not fully susceptible.
     """
-    return description, equations, parameters, reproduction_numbers
+    return description, equations, parameters, reproduction_numbers,assumptions

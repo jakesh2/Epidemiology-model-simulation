@@ -12,7 +12,6 @@ def seir_model_description():
     - **Infected (I)**: Individuals who are currently infectious.
     - **Recovered (R)**: Individuals who have recovered and gained immunity.
 
-    ### Differential Equations:
     """
     equations = r"""
     \begin{align*}
@@ -33,13 +32,18 @@ def seir_model_description():
     - $v$: Vaccination rate
     - $\\tau$: Treatment rate
     """
-    assumptions = """
+    assumptions = r"""
     ### Assumptions:
     - The population is closed (no migration).
     - The disease confers lifelong immunity upon recovery.
     - The incubation period is finite (exposed individuals eventually become infectious).
+    - The population is well-mixed (no spatial structure).
+    - The transmission rate ($\beta$), incubation rate ($\alpha$), recovery rate ($\gamma$), and death rates ($\mu$, $\delta$) are constant over time.
+    - Vaccination ($v$) and treatment ($\tau$) are applied uniformly across the population.
+    - Exposed individuals ($E$) are not infectious.
     
-    ### Differential Equations:"""
+    ### Differential Equations:
+    """
     reproduction_numbers = """
     ### Reproduction Numbers:
     - **$R_0$**: Basic reproduction number, representing the average number of secondary infections produced by a single infected individual in a fully susceptible population.

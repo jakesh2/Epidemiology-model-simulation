@@ -20,9 +20,9 @@ def sir_model(variables, t, params):
     
     return [dS_dt, dI_dt, dR_dt]
 
-def calculate_r0(beta, gamma, mu, delta):
+def calculate_r0(beta, gamma, mu, delta,tau):
     """Calculate the basic reproduction number (R₀)"""
-    return beta / (gamma + mu + delta)
+    return beta / (gamma + mu + delta + tau)
 
 def solve_model(S, I, R, beta, gamma, natural_death_rate=0, disease_death_rate=0, days=160, birth_rate=0.01, v=0, tau=0):
     '''
@@ -41,7 +41,7 @@ def solve_model(S, I, R, beta, gamma, natural_death_rate=0, disease_death_rate=0
     R_values = y[:, 2]
     
     # Calculate R₀
-    r0 = calculate_r0(beta, gamma, mu, delta)
+    r0 = calculate_r0(beta, gamma, mu, delta,tau)
     
     # Calculate R_eff over time (R₀ * S/N)
     N = S_values + I_values + R_values

@@ -10,11 +10,20 @@ def sis_model_description():
     - **Susceptible (S)**: Individuals who can catch the disease.
     - **Infected (I)**: Individuals currently infected and capable of spreading the disease.
 
+    """
+    assumptions = r"""
+    ### Assumptions:
+    - The population is closed (no migration).
+    - The disease does not confer immunity; recovered individuals become susceptible again.
+    - The population is well-mixed (no spatial structure).
+    - The transmission rate ($\beta$), recovery rate ($\gamma$), and death rates ($\mu$, $\delta$) are constant over time.
+    - There is no vaccination or treatment in this model.
+    
     ### Differential Equations:
     """
     equations = r"""
     \begin{align*}
-    \frac{dS}{dt} &= \lambda \times N - \beta \frac{S I}{N} - \mu S + \gamma I \\
+    \frac{dS}{dt} &= \lambda N - \beta \frac{S I}{N} - \mu S + \gamma I \\
     \frac{dI}{dt} &= \beta \frac{S I}{N} - (\gamma + \mu + \delta) I
     \end{align*}
     """
@@ -31,4 +40,4 @@ def sis_model_description():
     - **$R_0$**: Basic reproduction number, representing the average number of secondary infections produced by a single infected individual in a fully susceptible population.
     - **$R_{\\text{eff}}$**: Effective reproduction number, representing the average number of secondary infections produced by a single infected individual in a population that is not fully susceptible.
     """
-    return description, equations, parameters, reproduction_numbers
+    return description, equations, parameters, reproduction_numbers,assumptions
